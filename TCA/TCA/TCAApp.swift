@@ -1,14 +1,14 @@
 //
-//  mini_appApp.swift
-//  mini-app
+//  TCAApp.swift
+//  TCA
 //
-//  Created by sean on 2022/02/16.
+//  Created by sean on 2022/03/08.
 //
 
 import SwiftUI
 
 @main
-struct mini_appApp: App {
+struct TCAApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()

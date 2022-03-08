@@ -1,13 +1,13 @@
 //
-//  mini_appUITestsLaunchTests.swift
-//  mini-appUITests
+//  TCAUITestsLaunchTests.swift
+//  TCAUITests
 //
-//  Created by sean on 2022/02/16.
+//  Created by sean on 2022/03/08.
 //
 
 import XCTest
 
-class mini_appUITestsLaunchTests: XCTestCase {
+class TCAUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

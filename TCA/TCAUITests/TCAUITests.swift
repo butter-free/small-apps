@@ -1,13 +1,13 @@
 //
-//  mini_appUITests.swift
-//  mini-appUITests
+//  TCAUITests.swift
+//  TCAUITests
 //
-//  Created by sean on 2022/02/16.
+//  Created by sean on 2022/03/08.
 //
 
 import XCTest
 
-class mini_appUITests: XCTestCase {
+class TCAUITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

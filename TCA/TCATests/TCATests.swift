@@ -1,14 +1,14 @@
 //
-//  mini_appTests.swift
-//  mini-appTests
+//  TCATests.swift
+//  TCATests
 //
-//  Created by sean on 2022/02/16.
+//  Created by sean on 2022/03/08.
 //
 
 import XCTest
-@testable import mini_app
+@testable import TCA
 
-class mini_appTests: XCTestCase {
+class TCATests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
