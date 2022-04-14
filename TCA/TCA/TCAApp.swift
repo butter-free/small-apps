@@ -7,11 +7,17 @@
 
 import SwiftUI
 
+import Firebase
+
 @main
 struct TCAApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
+  var body: some Scene {
+    WindowGroup {
+      ContentView()
     }
+  }
+  
+  init() {
+    FirebaseApp.configure()
+  }
 }
