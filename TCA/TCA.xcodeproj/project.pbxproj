@@ -87,6 +87,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		691A307E280EF4FA0099E1B3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6950EAD927D7A61D00894E87 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		691A3080280EF62B0099E1B3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,7 +130,7 @@
 				69DC6E8428081FD7006A5050 /* Info.plist */,
 				6950EAD527D7A61B00894E87 /* TCAApp.swift */,
 				6950EAD727D7A61B00894E87 /* ContentView.swift */,
-				6950EAD927D7A61D00894E87 /* Assets.xcassets */,
+				691A307E280EF4FA0099E1B3 /* Resources */,
 				6950EADE27D7A61D00894E87 /* TCA.entitlements */,
 				69DC6E7B28081C5D006A5050 /* GoogleService-Info.plist */,
 				69DC6E8228081E8D006A5050 /* Launch Screen.storyboard */,
