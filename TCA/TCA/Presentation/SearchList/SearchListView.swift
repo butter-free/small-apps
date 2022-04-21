@@ -7,31 +7,6 @@
 
 import SwiftUI
 
-struct SearchItem: Identifiable, Codable {
-  let id: Int
-  let thumbnailURL: URL?
-  let repositoryName: String
-  let description: String
-  let language: String
-  let updatedDate: String
-  let countOfStars: Int
-  
-  internal init(
-    id: Int = 0,
-    thumbnailURL: URL? = nil,
-    repositoryName: String = "",
-    description: String = "",
-    language: String = "",
-    updatedDate: String = "",
-    countOfStars: Int = 0
-  ) {
-    self.id = id
-    self.thumbnailURL = thumbnailURL
-    self.repositoryName = repositoryName
-    self.description = description
-    self.language = language
-    self.updatedDate = updatedDate
-    self.countOfStars = countOfStars
   }
 }
 
