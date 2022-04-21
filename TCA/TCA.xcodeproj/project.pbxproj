@@ -14,6 +14,9 @@
 		6938FF2F280FE3E4006DD6DB /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6938FF2E280FE3E4006DD6DB /* SearchBar.swift */; };
 		6938FF31280FECD7006DD6DB /* SearchItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6938FF30280FECD7006DD6DB /* SearchItemView.swift */; };
 		6938FF3428100CD6006DD6DB /* StarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6938FF3328100CD6006DD6DB /* StarButton.swift */; };
+		6938FF3828111673006DD6DB /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6938FF3728111673006DD6DB /* ApiService.swift */; };
+		6938FF3A28111680006DD6DB /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6938FF3928111680006DD6DB /* ApiManager.swift */; };
+		6938FF3D281118E2006DD6DB /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6938FF3C281118E2006DD6DB /* EndPoint.swift */; };
 		6950EAD627D7A61B00894E87 /* TCAApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6950EAD527D7A61B00894E87 /* TCAApp.swift */; };
 		6950EAD827D7A61B00894E87 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6950EAD727D7A61B00894E87 /* MainView.swift */; };
 		6950EADA27D7A61D00894E87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6950EAD927D7A61D00894E87 /* Assets.xcassets */; };
@@ -52,6 +55,9 @@
 		6938FF2E280FE3E4006DD6DB /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		6938FF30280FECD7006DD6DB /* SearchItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItemView.swift; sourceTree = "<group>"; };
 		6938FF3328100CD6006DD6DB /* StarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarButton.swift; sourceTree = "<group>"; };
+		6938FF3728111673006DD6DB /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		6938FF3928111680006DD6DB /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		6938FF3C281118E2006DD6DB /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		6950EAD227D7A61B00894E87 /* TCA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TCA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6950EAD527D7A61B00894E87 /* TCAApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCAApp.swift; sourceTree = "<group>"; };
 		6950EAD727D7A61B00894E87 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -170,6 +176,16 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
+		6938FF362811165C006DD6DB /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				6938FF3B281118D6006DD6DB /* EndPoint */,
+				6938FF3728111673006DD6DB /* ApiService.swift */,
+				6938FF3928111680006DD6DB /* ApiManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		6950EAC927D7A61B00894E87 = {
 			isa = PBXGroup;
 			children = (
@@ -194,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				6938FF35281113A6006DD6DB /* Application */,
+				6938FF362811165C006DD6DB /* Network */,
 				691A307C280EF4D80099E1B3 /* Domain */,
 				691A307D280EF4E10099E1B3 /* Data */,
 				691A307B280EF4C00099E1B3 /* Presentation */,
@@ -376,8 +393,11 @@
 			files = (
 				6950EAD827D7A61B00894E87 /* MainView.swift in Sources */,
 				6938FF3428100CD6006DD6DB /* StarButton.swift in Sources */,
+				6938FF3A28111680006DD6DB /* ApiManager.swift in Sources */,
 				691A3082280EF63E0099E1B3 /* UIDevice+Extension.swift in Sources */,
+				6938FF3D281118E2006DD6DB /* EndPoint.swift in Sources */,
 				691A3085280EF6690099E1B3 /* UIApplication+Extension.swift in Sources */,
+				6938FF3828111673006DD6DB /* ApiService.swift in Sources */,
 				6950EAD627D7A61B00894E87 /* TCAApp.swift in Sources */,
 				6938FF31280FECD7006DD6DB /* SearchItemView.swift in Sources */,
 				691A3087280EF92A0099E1B3 /* SearchListView.swift in Sources */,
