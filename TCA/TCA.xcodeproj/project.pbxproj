@@ -162,6 +162,14 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		6938FF35281113A6006DD6DB /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				6950EAD527D7A61B00894E87 /* TCAApp.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
 		6950EAC927D7A61B00894E87 = {
 			isa = PBXGroup;
 			children = (
@@ -185,7 +193,7 @@
 		6950EAD427D7A61B00894E87 /* TCA */ = {
 			isa = PBXGroup;
 			children = (
-				6950EAD527D7A61B00894E87 /* TCAApp.swift */,
+				6938FF35281113A6006DD6DB /* Application */,
 				691A307C280EF4D80099E1B3 /* Domain */,
 				691A307D280EF4E10099E1B3 /* Data */,
 				691A307B280EF4C00099E1B3 /* Presentation */,
