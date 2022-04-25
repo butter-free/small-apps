@@ -9,11 +9,11 @@ import SwiftUI
 
 struct StarButton: View {
   
-  var didTapStarButton: () -> Void = {}
+  let numberOfStars: Int
   
   var body: some View {
-    Button(action: didTapStarButton) {
-      Text("9k Star")
+    Button(action: {}) {
+      Text("\(numberOfStars) Stars")
         .font(.system(size: 16, weight: .medium, design: .default))
         .foregroundColor(.gray)
         .padding(.init(top: 8, leading: 10, bottom: 8, trailing: 10))
@@ -28,6 +28,6 @@ struct StarButton: View {
 
 struct StarButton_Previews: PreviewProvider {
   static var previews: some View {
-    StarButton()
+    StarButton(numberOfStars: 1)
   }
 }
