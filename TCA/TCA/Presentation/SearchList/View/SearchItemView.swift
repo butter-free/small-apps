@@ -9,12 +9,27 @@ import SwiftUI
 
 struct SearchItemView: View {
   
-  var didTapStarButton: () -> Void = {}
+  enum Size {
+    static let thumbnail: CGFloat = 75
+    static let repositoryNameFont: CGFloat = 18
+    static let descriptionFont: CGFloat = 16
+    static let languageFont: CGFloat = 14
+    static let updatedDateFont: CGFloat = 16
+    static let viewHeight: CGFloat = 130
+  }
   
   let item: SearchItem
+  var didTap: (() -> Void)?
+  var didTapStarButton: (() -> Void)?
   
-  init(item: SearchItem, didTapStarButton: (() -> Void)? = nil) {
+  init(
+    item: SearchItem,
+    didTap: (() -> Void)? = nil,
+    didTapStarButton: (() -> Void)? = nil
+  ) {
     self.item = item
+    self.didTap = didTap
+    self.didTapStarButton = didTapStarButton
   }
   
   var body: some View {
@@ -23,7 +38,7 @@ struct SearchItemView: View {
         VStack(spacing: 0) {
           HStack {
             Image(systemName: "person")
-              .frame(width: 100, height: 100, alignment: .center)
+              .frame(width: Size.thumbnail, height: Size.thumbnail, alignment: .center)
               .overlay(
                 RoundedRectangle(cornerRadius: 12).stroke(Color.gray, lineWidth: 1)
               )
@@ -31,35 +46,52 @@ struct SearchItemView: View {
               alignment: .leading,
               spacing: 8
             ){
-              Text("Repository")
-                .font(.system(size: 24, weight: .medium, design: .default))
-              Text("Description")
-                .font(.system(size: 16, weight: .regular, design: .default))
-              Label("Swift", systemImage: "person")
-                .font(.system(size: 14, weight: .regular, design: .default))
+              Text(item.repositoryName)
+                .font(.system(size: Size.repositoryNameFont, weight: .semibold, design: .default))
+                .foregroundColor(.black)
+              Text(item.description)
+                .font(.system(size: Size.descriptionFont, weight: .regular, design: .default))
+                .foregroundColor(.gray)
+              Text(item.language)
+                .font(.system(size: Size.languageFont, weight: .regular, design: .default))
+                .foregroundColor(.gray)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+            .frame(maxWidth: .infinity, alignment: .leading)
           }
-          .frame(minHeight: 100, alignment: .top)
           
           HStack {
-            Text("Updated")
-              .font(.system(size: 16, weight: .regular, design: .default))
+            Text(item.updatedDate)
+              .font(.system(size: Size.updatedDateFont, weight: .regular, design: .default))
               .foregroundColor(.gray)
-              .frame(maxWidth: .infinity, alignment: .leading)
+              .frame(alignment: .leading)
             Spacer()
-            StarButton(didTapStarButton: didTapStarButton)
+            StarButton(numberOfStars: item.numberOfStars)
+              .onTapGesture {
+                didTapStarButton?()
+              }
           }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-          
-          Divider()
-        }.padding(.init(top: 12, leading: 12, bottom: 12, trailing: 12))
-          .frame(width: geometry.size.width, height: 171, alignment: .top)
+        }
+        .onTapGesture {
+          didTap?()
+        }
+        .frame(width: geometry.size.width, height: Size.viewHeight, alignment: .top)
     }
   }
 }
 
 struct SearchItemView_Previews: PreviewProvider {
   static var previews: some View {
-    SearchItemView(item: .init())
+    SearchItemView(
+      item: .init(
+        id: 0,
+        thumbnailURLString: "",
+        repositoryName: "Swift",
+        repositoryURLString: "",
+        description: "Description",
+        language: "Language",
+        updatedDate: "Updated Mar 22",
+        numberOfStars: 90
+      )
+    )
   }
 }
