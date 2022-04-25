@@ -37,6 +37,7 @@
 		69DC6E7F28081DA5006A5050 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 69DC6E7E28081DA5006A5050 /* FirebaseAuth */; };
 		69DC6E8128081DA5006A5050 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 69DC6E8028081DA5006A5050 /* FirebaseAuthCombine-Community */; };
 		69DC6E8328081E8D006A5050 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69DC6E8228081E8D006A5050 /* Launch Screen.storyboard */; };
+		69F2A0B828168CF70053CD83 /* SafariServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F2A0B728168CF70053CD83 /* SafariServiceView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 		69BE75BF28158EBD00DBA4DF /* SearchDefaultUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDefaultUseCase.swift; sourceTree = "<group>"; };
 		69DC6E8228081E8D006A5050 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		69DC6E8428081FD7006A5050 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		69F2A0B728168CF70053CD83 /* SafariServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariServiceView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				6938FF3328100CD6006DD6DB /* StarButton.swift */,
+				69F2A0B728168CF70053CD83 /* SafariServiceView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6938FF40281120F6006DD6DB /* Base.swift in Sources */,
+				69F2A0B828168CF70053CD83 /* SafariServiceView.swift in Sources */,
 				69BE75C028158EBD00DBA4DF /* SearchDefaultUseCase.swift in Sources */,
 				6950EAD827D7A61B00894E87 /* MainView.swift in Sources */,
 				6938FF3428100CD6006DD6DB /* StarButton.swift in Sources */,
