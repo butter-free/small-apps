@@ -37,10 +37,11 @@ struct SearchItemView: View {
       Color.white
         VStack(spacing: 0) {
           HStack {
-            Image(systemName: "person")
+            AsyncImageView(url: URL(string: item.owner.thumbnailURLString))
+              .aspectRatio(contentMode: .fit)
+              .cornerRadius(12)
               .frame(width: Size.thumbnail, height: Size.thumbnail, alignment: .center)
               .overlay(
-                RoundedRectangle(cornerRadius: 12).stroke(Color.gray, lineWidth: 1)
               )
             VStack(
               alignment: .leading,
