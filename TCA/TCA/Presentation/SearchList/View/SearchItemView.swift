@@ -42,6 +42,7 @@ struct SearchItemView: View {
               .cornerRadius(12)
               .frame(width: Size.thumbnail, height: Size.thumbnail, alignment: .center)
               .overlay(
+                RoundedRectangle(cornerRadius: 12).stroke(Color.gray, lineWidth: 0.5)
               )
             VStack(
               alignment: .leading,
