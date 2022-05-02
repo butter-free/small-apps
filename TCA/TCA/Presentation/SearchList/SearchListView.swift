@@ -16,7 +16,7 @@ struct SearchListView: View {
   }
   
   @State var searchedText: String = ""
-  @State var isOpenSafari: Bool = false
+  @State private var selectedItem: SearchItem? = nil
   
   let store: Store<SearchListState, SearchListAction>
   
@@ -28,11 +28,11 @@ struct SearchListView: View {
           SearchBar(searchText: searchedText)
           Divider()
           List {
-            ForEach(Array(viewStore.searchItemList.enumerated()), id: \.offset) { index, item in
+            ForEach(Array(viewStore.searchItemList), id: \.id) { item in
               SearchItemView(
                 item: item,
                 didTap: {
-                  self.isOpenSafari = true
+                  self.selectedItem = item
                 },
                 didTapStarButton: {
                   print("tap star button")
@@ -42,7 +42,7 @@ struct SearchListView: View {
               .listRowSeparator(.hidden)
               .edgesIgnoringSafeArea(.all)
               .frame(height: Height.itemView)
-              .sheet(isPresented: $isOpenSafari, onDismiss: dismissSheet) {
+              .sheet(item: $selectedItem, onDismiss: dismissSheet) { item in
                 if let url = URL(string: item.repositoryURLString) {
                   SafariServiceView(url: url)
                 }
@@ -61,7 +61,7 @@ struct SearchListView: View {
   }
   
   func dismissSheet() {
-    isOpenSafari = false
+    selectedItem = nil
   }
 }
 
