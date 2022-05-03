@@ -33,7 +33,6 @@ let searchListReducer = Reducer<
     return environment.searchUseCase.repositoryList(query: query)
       .receive(on: environment.mainQueue)
       .map { SearchListAction.updateSearchItemList($0) }
-      .assertNoFailure()
       .eraseToEffect()
   case let .updateSearchItemList(searchItemList):
     state.searchItemList = searchItemList
