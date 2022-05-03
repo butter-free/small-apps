@@ -8,6 +8,7 @@
 import SwiftUI
 
 import ComposableArchitecture
+import FirebaseAuth
 
 struct SearchListView: View {
   
@@ -17,6 +18,7 @@ struct SearchListView: View {
   
   @State var searchedText: String = ""
   @State private var selectedItem: SearchItem? = nil
+  @State private var isPresentSignInView: Bool = false
   
   let store: Store<SearchListState, SearchListAction>
   
@@ -35,7 +37,15 @@ struct SearchListView: View {
                   self.selectedItem = item
                 },
                 didTapStarButton: {
+                  // TODO: - Login & Starred
                   print("tap star button")
+                  if let user = Auth.auth().currentUser {
+                    print(user)
+                    print(user.email)
+                    print(user.displayName)
+                  } else {
+                    isPresentSignInView = true
+                  }
                 }
               )
               .listRowBackground(Color.white)
@@ -46,6 +56,17 @@ struct SearchListView: View {
                 if let url = URL(string: item.repositoryURLString) {
                   SafariServiceView(url: url)
                 }
+              }
+              .sheet(isPresented: $isPresentSignInView) {
+                SignInView(
+                  store: .init(
+                    initialState: SignInState(),
+                    reducer: signInReducer,
+                    environment: SignInEnvironment(
+                      signInUseCase: SignInDefaultUseCase()
+                    )
+                  )
+                )
               }
             }
           }
