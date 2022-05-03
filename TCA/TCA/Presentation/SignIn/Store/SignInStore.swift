@@ -16,8 +16,7 @@ struct SignInState: Equatable {
 }
 
 enum SignInAction {
-  case requestGithubSignIn
-  case updateToken(String)
+  case requestSignIn
   case response(Result<String, Error>)
   case dismissErrorAlert
 }
@@ -32,13 +31,11 @@ let signInReducer = Reducer<
   SignInEnvironment
 > { state, action, environment in
   switch action {
-  case let .requestGithubSignIn:
+  case .requestSignIn:
     return environment.signInUseCase.accessToken()
       .receive(on: DispatchQueue.main)
-      .map { SignInAction.updateToken($0) }
-      .eraseToEffect()
-  case let .updateToken(token):
       .catchToEffect(SignInAction.response)
+  case let .response(.success(token)):
     state.token = token
     return .none
   case let .response(.failure(error)):

@@ -23,7 +23,7 @@ struct SignInView: View {
         Divider()
           .padding(.init(top: 0, leading: 50, bottom: 0, trailing: 50))
         Button {
-          viewStore.send(.requestGithubSignIn)
+          viewStore.send(.requestSignIn)
         } label: {
           Image("btn_login")
         }
