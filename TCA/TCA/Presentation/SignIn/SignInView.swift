@@ -29,6 +29,16 @@ struct SignInView: View {
         }
         Spacer()
       }
+      .alert(
+        viewStore.state.networkError?.localizedDescription ?? "",
+        isPresented: viewStore.binding(
+          get: { $0.isShowErrorAlert },
+          send: .dismissErrorAlert
+        ),
+        actions: {
+          Button("Confirm") {}
+        }
+      )
     }
   }
 }

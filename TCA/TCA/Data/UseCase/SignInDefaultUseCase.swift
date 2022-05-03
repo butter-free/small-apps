@@ -16,7 +16,7 @@ class SignInDefaultUseCase: SignInUseCase {
 
 extension SignInDefaultUseCase {
   
-  func authorizationToken() -> AnyPublisher<String, Never> {
+  func accessToken() -> AnyPublisher<String, Error> {
     let provider = OAuthProvider(providerID: "github.com")
     provider.customParameters = [
       "client_id": Authorization.Github.clientID
@@ -32,7 +32,6 @@ extension SignInDefaultUseCase {
             return accessToken
           }.eraseToAnyPublisher()
       }
-      .assertNoFailure()
       .eraseToAnyPublisher()
   }
 }

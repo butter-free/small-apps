@@ -9,5 +9,5 @@ import Combine
 import Foundation
 
 protocol SignInUseCase {
-  func authorizationToken() -> AnyPublisher<String, Never>
+  func accessToken() -> AnyPublisher<String, Error>
 }
