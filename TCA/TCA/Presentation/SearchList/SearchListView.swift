@@ -27,7 +27,10 @@ struct SearchListView: View {
       WithViewStore(self.store) { viewStore in
         Color.white
         VStack(spacing: 0) {
-          SearchBar(searchText: searchedText)
+          SearchBar(searchText: $searchedText)
+            .onSubmit {
+              viewStore.send(.requestSearchItemList(searchedText))
+            }
           Divider()
           List {
             ForEach(viewStore.searchItemList, id: \.id) { item in
@@ -39,44 +42,46 @@ struct SearchListView: View {
                 didTapStarButton: {
                   // TODO: - Login & Starred
                   print("tap star button")
-                  if let user = Auth.auth().currentUser {
-                    print(user)
-                    print(user.email)
-                    print(user.displayName)
+                  if let _ = Auth.auth().currentUser {
+                    
                   } else {
                     isPresentSignInView = true
                   }
                 }
               )
-              .listRowBackground(Color.white)
-              .listRowSeparator(.hidden)
-              .edgesIgnoringSafeArea(.all)
-              .frame(height: Height.itemView)
               .sheet(item: $selectedItem, onDismiss: dismissSheet) { item in
                 if let url = URL(string: item.repositoryURLString) {
                   SafariServiceView(url: url)
                 }
               }
-              .sheet(isPresented: $isPresentSignInView) {
-                SignInView(
-                  store: .init(
-                    initialState: SignInState(),
-                    reducer: signInReducer,
-                    environment: SignInEnvironment(
-                      signInUseCase: SignInDefaultUseCase()
-                    )
-                  )
-                )
-              }
             }
+            .background(Color.white)
+            .listRowBackground(Color.white)
+            .listRowSeparator(.hidden)
+            .frame(maxWidth: .infinity, minHeight: Height.itemView)
           }
-          .background(Color.white)
-          .listStyle(PlainListStyle())
+          .listStyle(PlainListStyle.plain)
           .edgesIgnoringSafeArea(.all)
-          .frame(maxWidth: .infinity)
+          .frame(
+            minWidth: geometry.size.width,
+            minHeight: geometry.size.height
+          )
         }
-      }.onAppear {
-        viewStore.send(SearchListAction.requestSearchItemList("swift"))
+        .onAppear {
+          // TODO: - Trending Api
+          viewStore.send(SearchListAction.requestSearchItemList("swift"))
+        }
+      }
+      .sheet(isPresented: $isPresentSignInView) {
+        SignInView(
+          store: .init(
+            initialState: SignInState(),
+            reducer: signInReducer,
+            environment: SignInEnvironment(
+              signInUseCase: SignInDefaultUseCase()
+            )
+          )
+        )
       }
     }
   }
