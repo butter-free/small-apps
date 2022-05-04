@@ -66,6 +66,7 @@ struct SearchListView: View {
             minWidth: geometry.size.width,
             minHeight: geometry.size.height
           )
+          Divider()
         }
         .onAppear {
           // TODO: - Trending Api
