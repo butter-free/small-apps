@@ -14,6 +14,7 @@
 		691F5176281FD2EB0069F622 /* SignInUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691F5175281FD2EB0069F622 /* SignInUseCase.swift */; };
 		691F5178281FD3530069F622 /* SignInDefaultUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691F5177281FD3530069F622 /* SignInDefaultUseCase.swift */; };
 		691F517B28200C480069F622 /* SignInStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691F517A28200C480069F622 /* SignInStore.swift */; };
+		691F517E2820E4A80069F622 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691F517D2820E4A80069F622 /* Constant.swift */; };
 		691F518228215D880069F622 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691F518128215D880069F622 /* NetworkError.swift */; };
 		6938FF2B280FE2DB006DD6DB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6938FF2A280FE2DB006DD6DB /* GoogleService-Info.plist */; };
 		6938FF2F280FE3E4006DD6DB /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6938FF2E280FE3E4006DD6DB /* SearchBar.swift */; };
@@ -71,6 +72,7 @@
 		691F5175281FD2EB0069F622 /* SignInUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInUseCase.swift; sourceTree = "<group>"; };
 		691F5177281FD3530069F622 /* SignInDefaultUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInDefaultUseCase.swift; sourceTree = "<group>"; };
 		691F517A28200C480069F622 /* SignInStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInStore.swift; sourceTree = "<group>"; };
+		691F517D2820E4A80069F622 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		691F518128215D880069F622 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		6938FF2A280FE2DB006DD6DB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6938FF2E280FE3E4006DD6DB /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
@@ -199,6 +201,14 @@
 			path = Store;
 			sourceTree = "<group>";
 		};
+		691F517C2820E4960069F622 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				691F517D2820E4A80069F622 /* Constant.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		6938FF2C280FE3C9006DD6DB /* SearchList */ = {
 			isa = PBXGroup;
 			children = (
@@ -303,6 +313,7 @@
 		6950EAD427D7A61B00894E87 /* TCA */ = {
 			isa = PBXGroup;
 			children = (
+				691F517C2820E4960069F622 /* Common */,
 				6938FF35281113A6006DD6DB /* Application */,
 				6938FF362811165C006DD6DB /* Network */,
 				691A307C280EF4D80099E1B3 /* Domain */,
@@ -518,6 +529,7 @@
 				6938FF3428100CD6006DD6DB /* StarButton.swift in Sources */,
 				69F2A0BA28178F970053CD83 /* AsyncImageView.swift in Sources */,
 				691F5170281FC3A00069F622 /* SignInView.swift in Sources */,
+				691F517E2820E4A80069F622 /* Constant.swift in Sources */,
 				6938FF3A28111680006DD6DB /* ApiManager.swift in Sources */,
 				691A3082280EF63E0099E1B3 /* UIDevice+Extension.swift in Sources */,
 				6938FF3D281118E2006DD6DB /* EndPoint.swift in Sources */,
