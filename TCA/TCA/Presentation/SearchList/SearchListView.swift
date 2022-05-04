@@ -23,14 +23,14 @@ struct SearchListView: View {
   let store: Store<SearchListState, SearchListAction>
   
   var body: some View {
-    WithViewStore(store) { viewStore in
-      GeometryReader { geometry in
+    GeometryReader { geometry in
+      WithViewStore(self.store) { viewStore in
         Color.white
         VStack(spacing: 0) {
           SearchBar(searchText: searchedText)
           Divider()
           List {
-            ForEach(Array(viewStore.searchItemList), id: \.id) { item in
+            ForEach(viewStore.searchItemList, id: \.id) { item in
               SearchItemView(
                 item: item,
                 didTap: {
