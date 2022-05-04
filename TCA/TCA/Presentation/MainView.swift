@@ -10,15 +10,12 @@ import SwiftUI
 
 struct MainView: View {
   
-  enum Height {
-    static let tabBar: CGFloat = UIDevice.current.hasNotch ? 80 : 50
-    static let paddingBottom: CGFloat = Height.tabBar + 20
+  enum Padding {
+    static let SearchListViewBottom: CGFloat = 60
   }
   
   init() {
     UITabBar.appearance().barTintColor = .white
-    UITabBar.appearance().frame.size.height = Height.tabBar
-    UITabBar.appearance().frame.origin.y = UIScreen.main.bounds.height - Height.tabBar
   }
   
   var body: some View {
@@ -35,7 +32,8 @@ struct MainView: View {
           )
         )
       )
-      .padding(.init(top: 0, leading: 0, bottom: Height.paddingBottom, trailing: 0))
+      .edgesIgnoringSafeArea(.bottom)
+      .padding(.init(top: 0, leading: 0, bottom: Padding.SearchListViewBottom, trailing: 0))
       .tabItem {
         Image(systemName: "flame.fill")
       }
