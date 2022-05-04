@@ -12,9 +12,8 @@ struct MainView: View {
   
   enum Height {
     static let tabBar: CGFloat = UIDevice.current.hasNotch ? 80 : 50
+    static let paddingBottom: CGFloat = Height.tabBar + 20
   }
-  
-  @State private var text: String = ""
   
   init() {
     UITabBar.appearance().barTintColor = .white
@@ -36,8 +35,7 @@ struct MainView: View {
           )
         )
       )
-      .searchable(text: $text)
-      .padding(.init(top: 0, leading: 0, bottom: 20, trailing: 0))
+      .padding(.init(top: 0, leading: 0, bottom: Height.paddingBottom, trailing: 0))
       .tabItem {
         Image(systemName: "flame.fill")
       }
@@ -61,5 +59,6 @@ struct MainView: View {
 struct MainView_Previews: PreviewProvider {
   static var previews: some View {
     MainView()
+      
   }
 }
