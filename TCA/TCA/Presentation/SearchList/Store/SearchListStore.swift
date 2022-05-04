@@ -15,7 +15,7 @@ struct SearchListState: Equatable {
 
 enum SearchListAction {
   case requestSearchItemList(String)
-  case updateSearchItemList([SearchItem])
+  case responseSearchItemList(Result<[SearchItem], Never>)
 }
 
 struct SearchListEnvironment {
@@ -32,10 +32,12 @@ let searchListReducer = Reducer<
   case let .requestSearchItemList(query):
     return environment.searchUseCase.repositoryList(query: query)
       .receive(on: environment.mainQueue)
-      .map { SearchListAction.updateSearchItemList($0) }
-      .eraseToEffect()
-  case let .updateSearchItemList(searchItemList):
+      .catchToEffect(SearchListAction.responseSearchItemList)
+  case let .responseSearchItemList(.success(searchItemList)):
     state.searchItemList = searchItemList
+    return .none
+  case .responseSearchItemList(.failure):
+    state.searchItemList = []
     return .none
   }
 }
