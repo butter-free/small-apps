@@ -9,7 +9,9 @@ import SwiftUI
 
 struct SearchBar: View {
   
-  @State var searchText: String = ""
+  static let height: CGFloat = 50
+  
+  @Binding var searchText: String
   
   var body: some View {
     ZStack {
@@ -20,6 +22,7 @@ struct SearchBar: View {
             .foregroundColor(Color.black)
           
           TextField("", text: $searchText)
+            .submitLabel(.search)
             .accentColor(.white)
             .foregroundColor(.white)
         }
@@ -37,6 +40,6 @@ struct SearchBar: View {
       }
       .padding(EdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5))
     }
-    .frame(height: 50)
+    .frame(height: SearchBar.height)
   }
 }
