@@ -31,7 +31,7 @@
 		6950EAD827D7A61B00894E87 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6950EAD727D7A61B00894E87 /* MainView.swift */; };
 		6950EADA27D7A61D00894E87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6950EAD927D7A61D00894E87 /* Assets.xcassets */; };
 		6950EADD27D7A61D00894E87 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6950EADC27D7A61D00894E87 /* Preview Assets.xcassets */; };
-		6950EAE827D7A61D00894E87 /* TCATests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6950EAE727D7A61D00894E87 /* TCATests.swift */; };
+		6950EAE827D7A61D00894E87 /* SearchListStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6950EAE727D7A61D00894E87 /* SearchListStoreTests.swift */; };
 		6950EAF227D7A61D00894E87 /* TCAUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6950EAF127D7A61D00894E87 /* TCAUITests.swift */; };
 		6950EAF427D7A61D00894E87 /* TCAUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6950EAF327D7A61D00894E87 /* TCAUITestsLaunchTests.swift */; };
 		6950EB0227D7A6BA00894E87 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 6950EB0127D7A6BA00894E87 /* ComposableArchitecture */; };
@@ -94,7 +94,7 @@
 		6950EADC27D7A61D00894E87 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6950EADE27D7A61D00894E87 /* TCA.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TCA.entitlements; sourceTree = "<group>"; };
 		6950EAE327D7A61D00894E87 /* TCATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TCATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		6950EAE727D7A61D00894E87 /* TCATests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCATests.swift; sourceTree = "<group>"; };
+		6950EAE727D7A61D00894E87 /* SearchListStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListStoreTests.swift; sourceTree = "<group>"; };
 		6950EAED27D7A61D00894E87 /* TCAUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TCAUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6950EAF127D7A61D00894E87 /* TCAUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCAUITests.swift; sourceTree = "<group>"; };
 		6950EAF327D7A61D00894E87 /* TCAUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCAUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -346,7 +346,7 @@
 		6950EAE627D7A61D00894E87 /* TCATests */ = {
 			isa = PBXGroup;
 			children = (
-				6950EAE727D7A61D00894E87 /* TCATests.swift */,
+				69E88507282382A20016B997 /* SearchList */,
 			);
 			path = TCATests;
 			sourceTree = "<group>";
@@ -393,6 +393,14 @@
 				69E88505282264910016B997 /* SampleData.swift */,
 			);
 			path = Stub;
+			sourceTree = "<group>";
+		};
+		69E88507282382A20016B997 /* SearchList */ = {
+			isa = PBXGroup;
+			children = (
+				6950EAE727D7A61D00894E87 /* SearchListStoreTests.swift */,
+			);
+			path = SearchList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -573,7 +581,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6950EAE827D7A61D00894E87 /* TCATests.swift in Sources */,
+				6950EAE827D7A61D00894E87 /* SearchListStoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
