@@ -13,7 +13,7 @@ struct SearchListState: Equatable {
   var searchItemList: [SearchItem] = []
 }
 
-enum SearchListAction {
+enum SearchListAction: Equatable {
   case requestSearchItemList(String)
   case responseSearchItemList(Result<[SearchItem], Never>)
 }
