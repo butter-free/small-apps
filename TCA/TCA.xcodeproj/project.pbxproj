@@ -806,7 +806,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TCA.app/Contents/MacOS/TCA";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TCA.app/TCA";
 			};
 			name = Debug;
 		};
@@ -825,7 +825,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TCA.app/Contents/MacOS/TCA";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TCA.app/TCA";
 			};
 			name = Release;
 		};
