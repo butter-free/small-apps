@@ -11,10 +11,7 @@ let projectName: String = "TCA"
 let organizationName: String = "sample"
 let bundleName: String = "com.sample"
 
-let baseSetting: [String: SettingValue] = [
-  "MARKETING_VERSION": "1.0.0",
-  "PRODUCT_MODULE_NAME": "\(projectName)"
-]
+let baseSetting: [String: SettingValue] = [:]
 
 // info.plist의 내용을 직접 지정
 // TODO: - Build version auto increment & template

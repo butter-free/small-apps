@@ -678,9 +678,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4E263A6452F741890F32AF1B /* TCATests */,
-				91ACEA8B5A11934DB0876852 /* TCA */,
 				81FCBED21A40010EEFD49264 /* TCAUITests */,
+				91ACEA8B5A11934DB0876852 /* TCA */,
+				4E263A6452F741890F32AF1B /* TCATests */,
 			);
 		};
 /* End PBXProject section */
@@ -921,7 +921,6 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-fmodule-map-file=$(SRCROOT)/Tuist/Dependencies/SwiftPackageManager/.build/checkouts/GoogleUtilities/GoogleUtilities/AppDelegateSwizzler/Public/GoogleUtilities_AppDelegateSwizzler.modulemap",
@@ -962,7 +961,6 @@
 					"-fmodule-map-file=$(SRCROOT)/Tuist/Dependencies/SwiftPackageManager/.build/checkouts/promises/Sources/FBLPromises/include/module.modulemap",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sample.TCA;
-				PRODUCT_MODULE_NAME = TCA;
 				PRODUCT_NAME = TCA;
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = NO;
@@ -1037,7 +1035,6 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-fmodule-map-file=$(SRCROOT)/Tuist/Dependencies/SwiftPackageManager/.build/checkouts/GoogleUtilities/GoogleUtilities/AppDelegateSwizzler/Public/GoogleUtilities_AppDelegateSwizzler.modulemap",
@@ -1078,7 +1075,6 @@
 					"-fmodule-map-file=$(SRCROOT)/Tuist/Dependencies/SwiftPackageManager/.build/checkouts/promises/Sources/FBLPromises/include/module.modulemap",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sample.TCA;
-				PRODUCT_MODULE_NAME = TCA;
 				PRODUCT_NAME = TCA;
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = NO;
