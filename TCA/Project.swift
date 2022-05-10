@@ -25,7 +25,7 @@ let infoPlist: [String: InfoPlist.Value] = [
   "CFBundleShortVersionString": "1.0",
   "CFBundleVersion": "0",
   "CFBuildVersion": "0",
-  "UILaunchStoryboardName": "LaunchScreen",
+  "UILaunchStoryboardName": "Launch Screen",
   "UISupportedInterfaceOrientations" : ["UIInterfaceOrientationPortrait"],
   "UIUserInterfaceStyle":"Light"
 ]
