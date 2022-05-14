@@ -12,6 +12,7 @@ struct MainView: View {
   
   enum Padding {
     static let SearchListViewBottom: CGFloat = 60
+    static let StarredListViewBottom: CGFloat = 10
   }
   
   init() {
@@ -38,6 +39,9 @@ struct MainView: View {
         Image(systemName: "flame.fill")
       }
       Text("Second")
+      StarredListView()
+        .edgesIgnoringSafeArea(.bottom)
+        .padding(.init(top: 0, leading: 0, bottom: Padding.StarredListViewBottom, trailing: 0))
         .tabItem {
           Image(systemName: "star")
         }
