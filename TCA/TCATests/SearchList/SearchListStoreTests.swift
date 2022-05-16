@@ -14,7 +14,7 @@ class SearchListStoreTests: XCTestCase {
   
   let scheduler = DispatchQueue.test
   
-  var store: TestStore<SearchListState, SearchListState, SearchListAction, SearchListAction, SearchListEnvironment>?
+  var store: TestStore<RepositoryListState, RepositoryListState, SearchListAction, SearchListAction, SearchListEnvironment>?
   
   override func setUp() {
     super.setUp()
@@ -41,7 +41,7 @@ class SearchListStoreTests: XCTestCase {
   
   func testState_whenRequestSearchItemListAction_thenIsNotEmpty() {
     
-    let expectState: [SearchItem] = [.init(updatedDate: "Updated in 8 hours")]
+    let expectState: [RepositoryItem] = [.init(updatedDate: "Updated in 8 hours")]
     
     store?.send(.requestSearchItemList(""))
     
