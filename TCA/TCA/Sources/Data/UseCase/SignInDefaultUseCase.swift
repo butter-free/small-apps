@@ -12,26 +12,46 @@ import FirebaseAuth
 import FirebaseAuthCombineSwift
 
 class SignInDefaultUseCase: SignInUseCase {
+  
+  let userInfoRepository: UserInfoRepository
+  
+  init(userInfoRepository: UserInfoRepository) {
+    self.userInfoRepository = userInfoRepository
+  }
 }
 
 extension SignInDefaultUseCase {
   
-  func accessToken() -> AnyPublisher<String, Error> {
+  func accessToken() -> AnyPublisher<String, URLError> {
     let provider = OAuthProvider(providerID: "github.com")
     provider.customParameters = [
       "client_id": Authorization.Github.clientID
     ]
-    provider.scopes = ["user:email"]
+    provider.scopes = ["user:email", "public_repo"]
     
     return provider.getCredentialWith(nil)
       .flatMap {
         return Auth.auth().signIn(with: $0)
           .map { result -> String in
             let credential = result.credential as? OAuthCredential
-            let accessToken = credential?.accessToken ?? ""
-            return accessToken
-          }.eraseToAnyPublisher()
+            return credential?.accessToken ?? ""
+          }
+          .tryFilter {
+            if !$0.isEmpty {
+              return true
+            } else {
+              throw URLError(.badServerResponse)
+            }
+          }
+          .map { "token \($0)" }
+      }
+      .mapError { _ in
+        return URLError(.badServerResponse)
       }
       .eraseToAnyPublisher()
+  }
+  
+  func userInfo(accessToken: String) -> AnyPublisher<UserInfo, URLError> {
+    return self.userInfoRepository.requestUserInfo(accessToken: accessToken)
   }
 }

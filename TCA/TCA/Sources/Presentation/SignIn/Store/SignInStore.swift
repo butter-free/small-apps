@@ -5,24 +5,29 @@
 //  Created by sean on 2022/05/02.
 //
 
+import Combine
 import Foundation
 
 import ComposableArchitecture
 
 struct SignInState: Equatable {
-  var token: String = ""
+  var accessToken: String = ""
   var networkError: NetworkError? = nil
-  var isShowErrorAlert: Bool = false
+  var isPresentSignInAlert: Bool = false
 }
 
 enum SignInAction {
   case requestSignIn
-  case response(Result<String, Error>)
-  case dismissErrorAlert
+  case responseAccessToken(Result<String, URLError>)
+  case responseUserInfo(Result<UserInfo, URLError>)
+  case routeSignInAlert(RoutingState)
+  case routeErrorAlert(NetworkError?)
 }
 
 struct SignInEnvironment {
+  var userService: UserService
   let signInUseCase: SignInUseCase
+  let mainQueue: AnySchedulerOf<DispatchQueue>
 }
 
 let signInReducer = Reducer<
@@ -33,19 +38,33 @@ let signInReducer = Reducer<
   switch action {
   case .requestSignIn:
     return environment.signInUseCase.accessToken()
-      .receive(on: DispatchQueue.main)
-      .catchToEffect(SignInAction.response)
-  case let .response(.success(token)):
-    state.token = token
+      .catchToEffect(SignInAction.responseAccessToken)
+    
+  case let .responseAccessToken(.success(accessToken)):
+    environment.userService.updateAccessToken(accessToken)
+    state.accessToken = accessToken
+    return environment.signInUseCase.userInfo(
+      accessToken: accessToken
+    )
+    .receive(on: environment.mainQueue)
+    .catchToEffect(SignInAction.responseUserInfo)
+    
+  case let .responseUserInfo(.success(userInfo)):
+    environment.userService.updateUserInfo(userInfo)
+    return .init(value: .routeSignInAlert(.present))
+    
+  case let .responseAccessToken(.failure(error)),
+    let .responseUserInfo(.failure(error)):
+    environment.userService.signOut()
+    state.accessToken = ""
+    return .init(value: .routeErrorAlert(.error(error)))
+    
+  case let .routeSignInAlert(routingState):
+    state.isPresentSignInAlert = (routingState == .present)
     return .none
-  case let .response(.failure(error)):
-    state.networkError = .error(error)
-    state.isShowErrorAlert = true
-    return .none
-  case .dismissErrorAlert:
-    state.networkError = nil
-    state.isShowErrorAlert = false
+    
+  case let .routeErrorAlert(error):
+    state.networkError = error
     return .none
   }
 }
-
