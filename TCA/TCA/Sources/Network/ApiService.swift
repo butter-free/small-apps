@@ -9,5 +9,5 @@ import Combine
 import Foundation
 
 protocol ApiService {
-  func requestItems<T: Decodable>(endPoint: EndPoint) -> AnyPublisher<T, URLError>
+  func request<T: Decodable>(endPoint: EndPoint) -> AnyPublisher<T, URLError>
 }

@@ -9,6 +9,27 @@ import Foundation
 
 enum PathType {
   case search(String)
+  case starredList(String)
+  case starred(String, String)
+  case unStar(String, String)
+  case userInfo(String)
+}
+
+enum HTTPMethod {
+  case get, post, put, delete
+  
+  var string: String {
+    switch self {
+    case .get:
+      return "GET"
+    case .post:
+      return "POST"
+    case .put:
+      return "PUT"
+    case .delete:
+      return "DELETE"
+    }
+  }
 }
 
 struct EndPoint {
@@ -28,6 +49,10 @@ struct EndPoint {
 
 extension EndPoint {
   
+  var header: [String: String]? {
+    return ["Authorization": UserManager.shared.accessToken]
+  }
+  
   var url: URL? {
     
     var components = URLComponents()
@@ -37,6 +62,8 @@ extension EndPoint {
     var queryItems: [URLQueryItem] = []
     
     switch path {
+    case .userInfo:
+      components.path = "/user"
     case let .search(query):
       components.path = "/search/repositories"
       queryItems = [
@@ -44,10 +71,25 @@ extension EndPoint {
         .init(name: "sort", value: "stars"),
         .init(name: "order", value: "desc")
       ]
+    case let .starredList(userName):
+      components.path = "/users/\(userName)/starred"
+    case let .starred(ownerName, repositoryName), let .unStar(ownerName, repositoryName):
+      components.path = "/user/starred/\(ownerName)/\(repositoryName)"
     }
     
     components.queryItems = queryItems
     
     return components.url
+  }
+  
+  var method: HTTPMethod {
+    switch path {
+    case .starred:
+      return .put
+    case .unStar:
+      return .delete
+    default:
+      return .get
+    }
   }
 }
