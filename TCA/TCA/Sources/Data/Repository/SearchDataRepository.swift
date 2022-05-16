@@ -18,12 +18,12 @@ final class SearchDataRepository: SearchRepository {
 }
 
 extension SearchDataRepository {
-  func requestRepositoryList(query: String) -> AnyPublisher<[SearchItem], URLError> {
-    return apiService.requestItems(
+  func requestRepositoryList(query: String) -> AnyPublisher<[RepositoryItem], URLError> {
+    return apiService.request(
       endPoint: .init(path: .search(query))
     )
-    .map { (data: [SearchItem]) in
-      return data
+    .compactMap { (data: Base<[RepositoryItem]>) in
+      return data.items
     }.eraseToAnyPublisher()
   }
 }
