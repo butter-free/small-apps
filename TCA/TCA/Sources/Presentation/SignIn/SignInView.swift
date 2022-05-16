@@ -8,12 +8,11 @@
 import SwiftUI
 
 import ComposableArchitecture
-import FirebaseAuth
-import FirebaseAuthCombineSwift
 
 struct SignInView: View {
   
   let store: Store<SignInState, SignInAction>
+  var dismiss: () -> Void
   
   var body: some View {
     WithViewStore(store) { viewStore in
@@ -32,27 +31,23 @@ struct SignInView: View {
       .alert(
         viewStore.state.networkError?.localizedDescription ?? "",
         isPresented: viewStore.binding(
-          get: { $0.isShowErrorAlert },
-          send: .dismissErrorAlert
+          get: { $0.networkError != nil },
+          send: .routeErrorAlert(nil)
         ),
         actions: {
           Button("Confirm") {}
         }
       )
-    }
-  }
-}
-
-struct LoginView_Previews: PreviewProvider {
-  static var previews: some View {
-    SignInView(
-      store: .init(
-        initialState: SignInState(),
-        reducer: signInReducer,
-        environment: SignInEnvironment(
-          signInUseCase: SignInDefaultUseCase()
-        )
+      .alert(
+        "Success Sign In!",
+        isPresented: viewStore.binding(
+          get: { $0.isPresentSignInAlert },
+          send: .routeSignInAlert(.dismiss)
+        ),
+        actions: {
+          Button("Confirm") { dismiss() }
+        }
       )
-    )
+    }
   }
 }
