@@ -8,20 +8,27 @@
 import ProjectDescription
 
 let projectName: String = "TCA"
-let organizationName: String = "sample"
-let bundleName: String = "com.sample"
+let organizationName: String = "butterfree"
+let bundleName: String = "com.butterfree"
 
-let baseSetting: [String: SettingValue] = [:]
+let baseSetting: [String: SettingValue] = [
+  "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
+  "OTHER_LDFLAGS": "$(inherited) -Xlinker -interposable"
+]
 
 // info.plist의 내용을 직접 지정
 // TODO: - Build version auto increment & template
 let infoPlist: [String: InfoPlist.Value] = [
   "CFBundleName": "\(projectName)",
   "CFBundleDisplayName": "\(projectName)",
-  "CFBundleIdentifier": "\(bundleName).\(projectName)",
+  "CFBundleIdentifier": "\(bundleName).sample",
   "CFBundleShortVersionString": "1.0",
   "CFBundleVersion": "0",
   "CFBuildVersion": "0",
+  "CFBundleURLTypes": [[
+    "CFBundleTypeRole": "Editor",
+    "CFBundleURLSchemes": ["com.googleusercontent.apps.1035822977996-7r1up0avlf296ho78knjsqhbkf2s1994"]
+  ]],
   "UILaunchStoryboardName": "Launch Screen",
   "UISupportedInterfaceOrientations" : ["UIInterfaceOrientationPortrait"],
   "UIUserInterfaceStyle":"Light"
@@ -40,7 +47,7 @@ let targets = [
     name: projectName,
     platform: .iOS,
     product: .app,
-    bundleId: "\(bundleName).\(projectName)",
+    bundleId: "\(bundleName).sample",
     deploymentTarget: .iOS(targetVersion: "15.0", devices: [.iphone]),
     infoPlist: .extendingDefault(with: infoPlist),
     sources: "\(projectName)/Sources/**",
