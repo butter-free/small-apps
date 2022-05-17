@@ -23,7 +23,9 @@ extension SearchDefaultUseCase {
     var repositoryList: [RepositoryItem] = searchItemList
     let _ = searchItemList.enumerated().map { offset, element in
       repositoryList[offset].isStarred = false
-      repositoryList[offset].updatedDate = "Updated \(element.updatedDate.toDate?.toAgoString() ?? "")"
+      if let updatedDate = element.updatedDate.toDate?.toAgoString() {
+        repositoryList[offset].updatedDate = "Updated \(updatedDate)"
+      }
     }
     return repositoryList
   }
