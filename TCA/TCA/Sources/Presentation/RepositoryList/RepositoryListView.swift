@@ -11,7 +11,7 @@ import SwiftUI
 
 import ComposableArchitecture
 
-enum RepositoryListViewType {
+enum RepositoryListViewType: Equatable {
   case searchList, starredList
 }
 

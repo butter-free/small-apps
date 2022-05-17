@@ -11,11 +11,11 @@ import Foundation
 
 import ComposableArchitecture
 
-enum RoutingState {
+enum RoutingState: Equatable {
   case present, dismiss
 }
 
-enum RequestStarState {
+enum RequestStarState: Equatable {
   case starred(RepositoryItem), unstar(RepositoryItem)
 }
 
@@ -27,7 +27,7 @@ struct RepositoryListState: Equatable {
   var isPresentErrorAlert: Bool = false
 }
 
-enum RepositoryListAction {
+enum RepositoryListAction: Equatable {
   case onAppear(RepositoryListViewType)
   
   case requestStarredItemList
