@@ -13,10 +13,18 @@ class ApiManagerStub: ApiService {
     
     switch endPoint.path {
     case .search:
-      let data: [RepositoryItem] = SampleData<[RepositoryItem]>(path: endPoint.path).create()
-      return Just<T>(data as! T)
-        .mapError { _ in URLError(URLError.Code.badServerResponse) }
-        .eraseToAnyPublisher()
+      let data = SampleData(
+        path: endPoint.path
+      ).create()
+      return Just(data)
+        .decode(type: T.self, decoder: JSONDecoder()).eraseToAnyPublisher()
+        .mapError { error -> URLError in
+          if let error = error as? URLError {
+            return error
+          } else {
+            return URLError(.cannotDecodeRawData)
+          }
+        }.eraseToAnyPublisher()
     default:
       return Empty(completeImmediately: true).eraseToAnyPublisher()
     }

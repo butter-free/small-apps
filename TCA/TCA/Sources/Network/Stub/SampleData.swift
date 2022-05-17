@@ -7,18 +7,28 @@
 
 import Foundation
 
-struct SampleData<T: Decodable> {
+struct SampleData {
   
   let path: PathType
   
-  func create() -> T {
+  func create() -> Data {
     switch path {
-    case .search:
-      return [
-        RepositoryItem(updatedDate: "2022-05-04T17:32:00Z")
-      ] as! T
+    case let .search(query):
+      return toData(
+        parameters: [
+          "items": [
+            RepositoryItem(repositoryName: query).asDictionary()
+          ]
+        ]
+      )
     default:
-      return EmptyResponse() as! T
+      return toData(parameters: [:])
     }
+  }
+}
+
+extension SampleData {
+  func toData(parameters: [String: Any]) -> Data {
+    return try! JSONSerialization.data(withJSONObject: parameters)
   }
 }
