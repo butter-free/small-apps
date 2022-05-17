@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct RepositoryItem: Identifiable, Equatable, Decodable {
+struct RepositoryItem: Identifiable, Equatable, Codable {
   let id: Int
   let repositoryName: String
   let description: String
@@ -68,7 +68,7 @@ extension RepositoryItem {
   }
 }
 
-struct Owner: Equatable, Decodable {
+struct Owner: Equatable, Codable {
   let name: String
   let thumbnailURLString: String
   
