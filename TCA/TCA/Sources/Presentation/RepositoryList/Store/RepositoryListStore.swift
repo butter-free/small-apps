@@ -28,10 +28,10 @@ struct RepositoryListState: Equatable {
 }
 
 enum RepositoryListAction: Equatable {
-  case onAppear(RepositoryListViewType)
+  case requestItemList
   
   case requestStarredItemList
-  case requestStar(RequestStarState)
+  case requestStar(RepositoryItem)
   case responseStar(Result<ResponseStarState, URLError>)
   
   case requestRepositoryItemList(String)
@@ -43,7 +43,8 @@ enum RepositoryListAction: Equatable {
 }
 
 struct RepositoryListEnvironment {
-  var userService: UserService
+  let viewType: RepositoryListViewType
+  let userService: UserService
   let searchUseCase: SearchUseCase
   let starredUseCase: StarredUseCase
   let mainQueue: AnySchedulerOf<DispatchQueue>
@@ -55,8 +56,8 @@ let repositoryListReducer = Reducer<
   RepositoryListEnvironment
 > { state, action, environment in
   switch action {
-  case let .onAppear(viewType):
-    if viewType == .searchList {
+  case .requestItemList:
+    if environment.viewType == .searchList {
       return .init(value: .requestRepositoryItemList("swift"))
     } else {
       return .init(value: .requestStarredItemList)
@@ -73,8 +74,11 @@ let repositoryListReducer = Reducer<
     .receive(on: environment.mainQueue)
     .catchToEffect(RepositoryListAction.responseRepositoryItemList)
     
-  case let .requestStar(requestState):
+  case let .requestStar(item):
     if environment.userService.isSignIn {
+      
+      let requestState: RequestStarState = environment.viewType == .searchList ? .starred(item) : .unstar(item)
+      
       switch requestState {
       case let .starred(item):
         let (id, ownerName, repositoryName) = (

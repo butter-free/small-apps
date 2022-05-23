@@ -26,11 +26,11 @@ struct SearchListView: View {
               querySubject.send(searchedText)
             }
           RepositoryListView(
-            viewType: .searchList,
             store: .init(
               initialState: .init(),
               reducer: repositoryListReducer,
               environment: .init(
+                viewType: .searchList,
                 userService: UserManager.shared,
                 searchUseCase: SearchDefaultUseCase(
                   searchRepository: SearchDataRepository()

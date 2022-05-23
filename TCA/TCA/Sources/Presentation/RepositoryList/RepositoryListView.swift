@@ -21,7 +21,6 @@ struct RepositoryListView: View {
     static let itemView: CGFloat = 130
   }
   
-  let viewType: RepositoryListViewType
   let store: Store<RepositoryListState, RepositoryListAction>
   var onSubmitQuerySubject: PassthroughSubject<String, Never> = .init()
   
@@ -38,7 +37,7 @@ struct RepositoryListView: View {
                   viewStore.send(.routeSafariView(item))
                 },
                 didTapStarButton: {
-                  viewStore.send(.requestStar(viewType == .searchList ? .starred(item) : .unstar(item)))
+                  viewStore.send(.requestStar(item))
                 }
               )
               .sheet(
@@ -66,8 +65,7 @@ struct RepositoryListView: View {
           )
         }
         .onAppear {
-          // TODO: - Trending Api
-          viewStore.send(.onAppear(viewType))
+          viewStore.send(.requestItemList)
         }
         .sheet(
           isPresented: viewStore.binding(
@@ -104,11 +102,11 @@ struct RepositoryListView: View {
 struct RepositoryListView_Previews: PreviewProvider {
   static var previews: some View {
     RepositoryListView(
-      viewType: .searchList,
       store: Store(
         initialState: RepositoryListState(),
         reducer: repositoryListReducer,
         environment: RepositoryListEnvironment(
+          viewType: .searchList,
           userService: UserManager.shared,
           searchUseCase: SearchDefaultUseCase(
             searchRepository: SearchDataRepository()

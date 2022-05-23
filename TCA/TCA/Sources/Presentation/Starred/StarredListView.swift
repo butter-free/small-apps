@@ -18,11 +18,11 @@ struct StarredListView: View {
       Color.white
       VStack(spacing: 0) {
         RepositoryListView(
-          viewType: .starredList,
           store: Store(
             initialState: RepositoryListState(),
             reducer: repositoryListReducer,
             environment: RepositoryListEnvironment(
+              viewType: .starredList,
               userService: UserManager.shared,
               searchUseCase: SearchDefaultUseCase(
                 searchRepository: SearchDataRepository()
