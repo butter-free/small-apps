@@ -62,6 +62,12 @@ let repositoryListReducer = Reducer<
     } else {
       return .init(value: .requestStarredItemList)
     }
+    
+  case let .requestRepositoryItemList(query):
+    return environment.searchUseCase.repositoryList(query: query)
+      .receive(on: environment.mainQueue)
+      .catchToEffect(RepositoryListAction.responseRepositoryItemList)
+  
   case .requestStarredItemList:
     
     guard let ownerName = environment.userService.userInfo?.name else {
@@ -73,6 +79,15 @@ let repositoryListReducer = Reducer<
     )
     .receive(on: environment.mainQueue)
     .catchToEffect(RepositoryListAction.responseRepositoryItemList)
+    
+  case let .responseRepositoryItemList(result):
+    switch result {
+    case let .success(repositoryItemList):
+      state.repositoryItemList = repositoryItemList
+    case .failure:
+      return .init(value: .routeErrorAlert(.present))
+    }
+    return .none
     
   case let .requestStar(item):
     if environment.userService.isSignIn {
@@ -92,6 +107,7 @@ let repositoryListReducer = Reducer<
           ownerName: ownerName,
           repositoryName: repositoryName
         )
+        .receive(on: environment.mainQueue)
         .catchToEffect(RepositoryListAction.responseStar)
       case let .unstar(item):
         let (id, ownerName, repositoryName) = (
@@ -105,6 +121,7 @@ let repositoryListReducer = Reducer<
           ownerName: ownerName,
           repositoryName: repositoryName
         )
+        .receive(on: environment.mainQueue)
         .catchToEffect(RepositoryListAction.responseStar)
       }
     } else {
@@ -123,26 +140,12 @@ let repositoryListReducer = Reducer<
             repositoryItemList[offset].isStarred = true
           }
         }
+        state.repositoryItemList = repositoryItemList
       case let .unstar(id):
         state.repositoryItemList = repositoryItemList.filter {
           $0.id != id
         }
       }
-      state.repositoryItemList = repositoryItemList
-    case .failure:
-      return .init(value: .routeErrorAlert(.present))
-    }
-    return .none
-    
-  case let .requestRepositoryItemList(query):
-    return environment.searchUseCase.repositoryList(query: query)
-      .receive(on: environment.mainQueue)
-      .catchToEffect(RepositoryListAction.responseRepositoryItemList)
-    
-  case let .responseRepositoryItemList(result):
-    switch result {
-    case let .success(repositoryItemList):
-      state.repositoryItemList = repositoryItemList
     case .failure:
       return .init(value: .routeErrorAlert(.present))
     }
