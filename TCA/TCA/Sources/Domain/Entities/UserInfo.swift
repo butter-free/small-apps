@@ -9,6 +9,7 @@
 import Foundation
 
 class UserInfo: NSObject, Codable, NSCoding {
+  
   let id: Int
   let name: String
   let thumbnail: String
@@ -16,6 +17,25 @@ class UserInfo: NSObject, Codable, NSCoding {
   let bio: String
   let followers: Int
   let following: Int
+  
+  init(
+    id: Int = -1,
+    name: String = "",
+    thumbnail: String = "",
+    email: String = "",
+    bio: String = "",
+    followers: Int = -1,
+    following: Int = -1
+  ) {
+    self.id = id
+    self.name = name
+    self.thumbnail = thumbnail
+    self.email = email
+    self.bio = bio
+    self.followers = followers
+    self.following = following
+    super.init()
+  }
   
   required init(from decoder: Decoder) throws {
     let container =  try decoder.container(keyedBy: CodingKeys.self)
