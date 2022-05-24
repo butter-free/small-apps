@@ -28,7 +28,10 @@ extension StarredDefaultUseCase {
     var repositoryList: [RepositoryItem] = searchItemList
     let _ = searchItemList.enumerated().map { offset, element in
       repositoryList[offset].isStarred = true
-      repositoryList[offset].updatedDate = "Updated \(element.updatedDate.toDate?.toAgoString() ?? "")"
+      
+      if let agoString = element.updatedDate.toDate?.toAgoString() {
+        repositoryList[offset].updatedDate = "Updated \(agoString)"
+      }
     }
     return repositoryList
   }
