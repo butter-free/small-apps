@@ -21,7 +21,6 @@ enum RequestStarState: Equatable {
 
 struct RepositoryListState: Equatable {
   var repositoryItemList: [RepositoryItem] = []
-  var selectedItem: RepositoryItem? = nil
   var isPresentAlert: Bool = false
   var isPresentSignInView: Bool = false
   var isPresentErrorAlert: Bool = false
@@ -37,7 +36,6 @@ enum RepositoryListAction: Equatable {
   case requestRepositoryItemList(String)
   case responseRepositoryItemList(Result<[RepositoryItem], URLError>)
   
-  case routeSafariView(RepositoryItem?)
   case routeSignInView(RoutingState)
   case routeErrorAlert(RoutingState)
 }
@@ -149,10 +147,6 @@ let repositoryListReducer = Reducer<
     case .failure:
       return .init(value: .routeErrorAlert(.present))
     }
-    return .none
-    
-  case let .routeSafariView(item):
-    state.selectedItem = item
     return .none
     
   case let .routeSignInView(routingState):

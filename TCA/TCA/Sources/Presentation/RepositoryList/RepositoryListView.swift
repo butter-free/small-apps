@@ -12,7 +12,7 @@ import SwiftUI
 import ComposableArchitecture
 
 enum RepositoryListViewType: Equatable {
-  case searchList, starredList
+  case searchList, starredList, none
 }
 
 struct RepositoryListView: View {
@@ -20,6 +20,8 @@ struct RepositoryListView: View {
   enum Height {
     static let itemView: CGFloat = 130
   }
+  
+  @State var selectedItem: RepositoryItem? = nil
   
   let store: Store<RepositoryListState, RepositoryListAction>
   var onSubmitQuerySubject: PassthroughSubject<String, Never> = .init()
@@ -34,17 +36,17 @@ struct RepositoryListView: View {
               RepositoryItemView(
                 item: item,
                 didTap: {
-                  viewStore.send(.routeSafariView(item))
+                  selectedItem = item
                 },
                 didTapStarButton: {
                   viewStore.send(.requestStar(item))
                 }
               )
               .sheet(
-                item: viewStore.binding(
-                  get: { $0.selectedItem },
-                  send: .routeSafariView(nil)
-                ),
+                item: $selectedItem,
+                onDismiss: {
+                  selectedItem = nil
+                },
                 content: { item in
                   if let url = URL(string: item.url) {
                     SafariServiceView(url: url)
