@@ -16,7 +16,7 @@ struct SignInState: Equatable {
   var isPresentSignInAlert: Bool = false
 }
 
-enum SignInAction {
+enum SignInAction: Equatable {
   case requestSignIn
   case responseAccessToken(Result<String, URLError>)
   case responseUserInfo(Result<UserInfo, URLError>)
