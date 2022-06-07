@@ -35,7 +35,12 @@ struct MainView: View {
         .tabItem {
           Image(systemName: "star")
         }
-      Text("Third")
+      ProfileContainerView(
+        store: .init(
+          initialState: .init(),
+          reducer: profileContainerReducer,
+          environment: .init(userService: UserManager.shared)
+        ))
         .tabItem {
           Image(systemName: "person")
         }
