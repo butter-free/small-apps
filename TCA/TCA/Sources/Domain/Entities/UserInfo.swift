@@ -45,8 +45,8 @@ class UserInfo: NSObject, Codable, NSCoding {
     self.thumbnail = try container.decodeIfPresent(String.self, forKey: .thumbnail) ?? ""
     self.email =     try container.decodeIfPresent(String.self, forKey: .email) ?? ""
     self.bio     =   try container.decodeIfPresent(String.self, forKey: .bio) ?? ""
-    self.followers = try container.decodeIfPresent(Int.self, forKey: .id) ?? -1
-    self.following = try container.decodeIfPresent(Int.self, forKey: .id) ?? -1
+    self.followers = try container.decodeIfPresent(Int.self, forKey: .followers) ?? -1
+    self.following = try container.decodeIfPresent(Int.self, forKey: .following) ?? -1
   }
   
   func encode(to encoder: Encoder) throws {
