@@ -13,6 +13,8 @@ import FirebaseAuthCombineSwift
 
 class SignInDefaultUseCase: SignInUseCase {
   
+  let provider = OAuthProvider(providerID: "github.com")
+  
   let userInfoRepository: UserInfoRepository
   
   init(userInfoRepository: UserInfoRepository) {
@@ -23,7 +25,7 @@ class SignInDefaultUseCase: SignInUseCase {
 extension SignInDefaultUseCase {
   
   func accessToken() -> AnyPublisher<String, URLError> {
-    let provider = OAuthProvider(providerID: "github.com")
+    
     provider.customParameters = [
       "client_id": Authorization.Github.clientID
     ]
