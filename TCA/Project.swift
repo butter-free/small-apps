@@ -55,7 +55,8 @@ let targets = [
     dependencies: [
       .external(name: "ComposableArchitecture"),
       .external(name: "FirebaseAuth"),
-      .external(name: "FirebaseAuthCombine-Community")
+      .external(name: "FirebaseAuthCombine-Community"),
+      .external(name: "SwiftSoup")
     ],
     settings: settings
   ),
