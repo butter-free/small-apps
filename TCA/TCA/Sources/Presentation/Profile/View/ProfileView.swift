@@ -55,7 +55,6 @@ struct ProfileView: View {
           }
           .frame(
             maxWidth: .infinity,
-            maxHeight: .infinity,
             alignment: .leading
           )
         }.frame(
@@ -74,7 +73,7 @@ struct ProfileView: View {
             Text("Edit")
               .font(.system(size: Size.editButtonFont, weight: .regular, design: .default))
               .foregroundColor(.gray)
-              .frame(minWidth: 50, minHeight: 26)
+              .frame(minWidth: 50, minHeight: 25)
           }
           .padding(.init(top: 4, leading: 10, bottom: 4, trailing: 10))
           .overlay(
@@ -84,9 +83,10 @@ struct ProfileView: View {
         }
         .frame(
           minWidth: geometry.size.width,
-          alignment: .leading
+          maxHeight: Size.editButtonFont
         )
-        
+        Spacer()
+          .frame(maxHeight: 20)
         Divider()
       } // VStack
     } // GeometryReader

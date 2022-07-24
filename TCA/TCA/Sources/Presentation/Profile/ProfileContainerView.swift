@@ -16,8 +16,21 @@ struct ProfileContainerView: View {
   
   var body: some View {
     WithViewStore(self.store) { viewStore in
-      ProfileView(userInfo: viewStore.userInfo)
-        .padding(.init(top: 12, leading: 12, bottom: 0, trailing: 12))
+      VStack {
+        ProfileView(userInfo: viewStore.userInfo)
+          .frame(maxHeight: 128)
+        if !viewStore.contributions.isEmpty {
+          ContributionView(
+            contributions: viewStore.contributions
+          )
+        }
+        
+        Spacer()
+      }
+      .padding(.init(top: 12, leading: 12, bottom: 0, trailing: 12))
+      .onAppear {
+        viewStore.send(.onAppear)
+      }
     }
   }
 }
@@ -28,7 +41,9 @@ struct ProfileContainerView_Previews: PreviewProvider {
       store: .init(
         initialState: .init(),
         reducer: profileContainerReducer,
-        environment: .init(userService: UserManager.shared)
+        environment: .init(
+          userService: UserManager.shared
+        )
       )
     )
   }
