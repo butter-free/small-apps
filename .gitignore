@@ -41,7 +41,6 @@ xcuserdata
 DerivedData/
 *.xcodeproj
 
-
 ### Xcode ###
 ## User settings
 xcuserdata/
@@ -51,12 +50,18 @@ xcuserdata/
 *.xccheckout
 
 ### Xcode Patch ###
+*.xcworkspace
 *.xcodeproj/*
 !*.xcodeproj/project.pbxproj
 !*.xcodeproj/xcshareddata/
 !*.xcworkspace/contents.xcworkspacedata
 /*.gcno
 **/xcshareddata/WorkspaceSettings.xcsettings
+
+### Tuist ###
+graph.dot
+Derived/
+Tuist/Dependencies
 
 ### Custom ###
 **/Constant.swift

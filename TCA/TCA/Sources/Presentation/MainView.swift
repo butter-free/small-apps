@@ -12,36 +12,35 @@ struct MainView: View {
   
   enum Padding {
     static let SearchListViewBottom: CGFloat = 60
+    static let StarredListViewBottom: CGFloat = 10
   }
   
   init() {
-    UITabBar.appearance().barTintColor = .white
+    let appearance = UITabBarAppearance()
+    appearance.backgroundColor = .white
+    appearance.shadowImage = nil
+    appearance.shadowColor = nil
+    UITabBar.appearance().standardAppearance = appearance
   }
   
   var body: some View {
     TabView {
-      SearchListView(
-        store: .init(
-          initialState: SearchListState(),
-          reducer: searchListReducer,
-          environment: SearchListEnvironment(
-            searchUseCase: SearchDefaultUseCase(
-              repository: SearchDataRepository()
-            ),
-            mainQueue: DispatchQueue.main.eraseToAnyScheduler()
-          )
-        )
-      )
-      .edgesIgnoringSafeArea(.bottom)
-      .padding(.init(top: 0, leading: 0, bottom: Padding.SearchListViewBottom, trailing: 0))
-      .tabItem {
-        Image(systemName: "flame.fill")
-      }
-      Text("Second")
+      SearchListView()
+        .padding(.init(top: 0, leading: 0, bottom: Padding.SearchListViewBottom, trailing: 0))
+        .tabItem {
+          Image(systemName: "flame.fill")
+        }
+      StarredListView()
+        .padding(.init(top: 0, leading: 0, bottom: Padding.StarredListViewBottom, trailing: 0))
         .tabItem {
           Image(systemName: "star")
         }
-      Text("Third")
+      ProfileContainerView(
+        store: .init(
+          initialState: .init(),
+          reducer: profileContainerReducer,
+          environment: .init(userService: UserManager.shared)
+        ))
         .tabItem {
           Image(systemName: "person")
         }
@@ -57,6 +56,5 @@ struct MainView: View {
 struct MainView_Previews: PreviewProvider {
   static var previews: some View {
     MainView()
-      
   }
 }

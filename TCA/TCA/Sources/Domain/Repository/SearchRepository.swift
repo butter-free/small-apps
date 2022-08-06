@@ -9,5 +9,5 @@ import Combine
 import Foundation
 
 protocol SearchRepository {
-  func requestRepositoryList(query: String) -> AnyPublisher<[SearchItem], URLError>
+  func requestRepositoryList(query: String) -> AnyPublisher<[RepositoryItem], URLError>
 }

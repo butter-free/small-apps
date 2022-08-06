@@ -16,6 +16,10 @@ let dependencies = Dependencies(
     .remote(
       url: "https://github.com/firebase/firebase-ios-sdk.git",
       requirement: .upToNextMajor(from: "8.15.0")
+    ),
+    .remote(
+      url: "https://github.com/scinfu/SwiftSoup.git",
+      requirement: .upToNextMajor(from: "2.4.3")
     )
   ],
   platforms: [.iOS]
