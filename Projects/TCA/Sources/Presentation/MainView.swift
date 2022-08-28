@@ -6,6 +6,7 @@
 //
 
 import Combine
+import Foundation
 import SwiftUI
 
 struct MainView: View {
@@ -15,7 +16,13 @@ struct MainView: View {
     static let StarredListViewBottom: CGFloat = 10
   }
   
-  init() {
+  @State private var selectionValue: Int = 0
+  
+  private let userService: UserService
+  
+  init(userService: UserService) {
+    self.userService = userService
+    
     let appearance = UITabBarAppearance()
     appearance.backgroundColor = .white
     appearance.shadowImage = nil
@@ -24,30 +31,46 @@ struct MainView: View {
   }
   
   var body: some View {
-    TabView {
+    TabView(selection: $selectionValue) {
       SearchListView()
         .padding(.init(top: 0, leading: 0, bottom: Padding.SearchListViewBottom, trailing: 0))
         .tabItem {
           Image(systemName: "flame.fill")
         }
+      
       StarredListView()
         .padding(.init(top: 0, leading: 0, bottom: Padding.StarredListViewBottom, trailing: 0))
         .tabItem {
           Image(systemName: "star")
         }
+      
       ProfileContainerView(
         store: .init(
           initialState: .init(),
           reducer: profileContainerReducer,
-          environment: .init(userService: UserManager.shared)
+          environment: .init(userService: userService)
         ))
-        .tabItem {
-          Image(systemName: "person")
+      .tabItem {
+        Image(systemName: "person")
+      }
+      
+      SettingsContainerView(
+        store: .init(
+          initialState: .init(),
+          reducer: settingsReducer,
+          environment: .init(
+            userService: userService,
+            signOutUseCase: SignOutDefaultUseCase(),
+            mainQueue: DispatchQueue.main.eraseToAnyScheduler()
+          )
+        ),
+        dismiss: {
+          selectionValue = 0
         }
-      Text("Fourth")
-        .tabItem {
-          Image(systemName: "gearshape")
-        }
+      )
+      .tabItem {
+        Image(systemName: "gearshape")
+      }
     }
     .background(Color.white)
   }
@@ -55,6 +78,6 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
   static var previews: some View {
-    MainView()
+    MainView(userService: UserManager.shared)
   }
 }
