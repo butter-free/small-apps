@@ -8,15 +8,25 @@
 import ProjectDescription
 import ProjectDescriptionHelpers
 
-let tca = Project.featureFramework(
+let tca = Project.feature(
   name: "TCA",
   products: [.app, .unitTests],
-  settings: Project.makeSettings(),
-  infoPlist: .extendingDefault(with: Project.makeInfoPlist(name: "TCA")),
+  infoPlist: .custom(
+    name: "TCA",
+    extentions: [
+      "CFBundleURLTypes": .array([
+        .dictionary([
+          "CFBundleTypeRole": .string("Editor"),
+          "CFBundleURLSchemes": .array([
+            .string("com.googleusercontent.apps.1035822977996-7r1up0avlf296ho78knjsqhbkf2s1994")
+          ])
+        ])
+      ])
+    ]
+  ),
   dependencies: [
+    .project(target: "AppCore", path: .relativeToRoot("AppCore")),
     .external(name: "ComposableArchitecture"),
-    .external(name: "FirebaseAuth"),
-    .external(name: "FirebaseAuthCombine-Community"),
     .external(name: "SwiftSoup")
   ]
 )
