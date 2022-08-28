@@ -5,6 +5,8 @@
 //  Created by sean on 2022/03/08.
 //
 
+import AppCore
+
 import Combine
 import Foundation
 import SwiftUI

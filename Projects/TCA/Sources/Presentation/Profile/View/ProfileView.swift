@@ -6,6 +6,8 @@
 //  Copyright © 2022 butterfree. All rights reserved.
 //
 
+import AppCore
+
 import SwiftUI
 
 import ComposableArchitecture

@@ -5,6 +5,8 @@
 //  Created by sean on 2022/03/08.
 //
 
+import AppCore
+
 import SwiftUI
 
 import Firebase
@@ -13,7 +15,7 @@ import Firebase
 struct TCAApp: App {
   var body: some Scene {
     WindowGroup {
-      MainView()
+      MainView(userService: UserManager.shared)
     }
   }
   
