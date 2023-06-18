@@ -10,7 +10,7 @@ import ProjectDescription
 let workspace = Workspace(
   name: "Sample",
   projects: [
-    "AppCore",
+    "Core",
     "Projects/**"
   ]
 )
