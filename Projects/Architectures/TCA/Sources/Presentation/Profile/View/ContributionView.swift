@@ -14,7 +14,7 @@ struct RectangleView: View {
   
   var body: some View {
     switch contribution.level {
-    case .less:
+    case .empty:
       Color.init(.init(red: 221/255, green: 224/255, blue: 228/255, alpha: 1)).edgesIgnoringSafeArea(.all)
     case .one:
       Color.init(.init(red: 140/255, green: 231/255, blue: 152/255, alpha: 1)).edgesIgnoringSafeArea(.all)
@@ -34,7 +34,7 @@ struct ContributionView: View {
   var body: some View {
     ZStack {
       VStack(alignment: .leading, spacing: 6) {
-        Text("올해에는 \(contributions.count)개의 commit을 기여중입니다.")
+        Text("올해에는 \(contributions.filter ({ $0.level != .empty }).count)일 동안 commit을 반영했습니다.")
         ScrollView(
           .horizontal,
           showsIndicators: true

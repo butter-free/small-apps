@@ -52,19 +52,17 @@ extension ContributionProvider {
   private func parseContributions(from element: Element) -> Contribution? {
     do {
       let dataLevel = try element.attr("data-level")
-      let dataCount = try element.attr("data-count")
       let dataDate = try element.attr("data-date")
       
       let dateFormatter = DateFormatter()
       dateFormatter.dateFormat = "YYYY-MM-dd"
       
       guard let level = Int(dataLevel),
-            let count = Int(dataCount),
             let date = dateFormatter.date(from: dataDate) else {
         return nil
       }
       
-      return Contribution(date: date, count: count, level: Contribution.Level(rawValue: level) ?? .less)
+      return Contribution(date: date, count: 0, level: Contribution.Level(rawValue: level) ?? .empty)
     } catch let error {
       print(error)
     }

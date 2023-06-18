@@ -10,7 +10,7 @@ import Foundation
 
 public struct Contribution: Equatable, Hashable {
   public enum Level: Int {
-    case less, one, two, three, more
+    case empty, one, two, three, more
   }
   
   public let date: Date
