@@ -20,7 +20,7 @@ public final class ContributionProvider {
   }
   
   public func contributions() -> AnyPublisher<[Contribution], URLError> {
-    let urlString = "https://github.com/users/\(userName)/contributions"
+    let urlString = "https://ghchart.rshah.org/\(userName)"
     
     guard let url = URL(string: urlString) else {
       return Fail(error: URLError(.badURL)).eraseToAnyPublisher()
@@ -51,18 +51,18 @@ public final class ContributionProvider {
 extension ContributionProvider {
   private func parseContributions(from element: Element) -> Contribution? {
     do {
-      let dataLevel = try element.attr("data-level")
+      let dataScore = try element.attr("data-score")
       let dataDate = try element.attr("data-date")
       
       let dateFormatter = DateFormatter()
       dateFormatter.dateFormat = "YYYY-MM-dd"
       
-      guard let level = Int(dataLevel),
+      guard let score = Int(dataScore),
             let date = dateFormatter.date(from: dataDate) else {
         return nil
       }
       
-      return Contribution(date: date, count: 0, level: Contribution.Level(rawValue: level) ?? .empty)
+      return Contribution(date: date, score: Contribution.Score(rawValue: score) ?? .empty)
     } catch let error {
       print(error)
     }

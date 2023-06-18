@@ -13,7 +13,7 @@ import SwiftUI
 struct RectangleView: View {
   
   var body: some View {
-    switch contribution.level {
+    switch contribution.score {
     case .empty:
       Color.init(.init(red: 221/255, green: 224/255, blue: 228/255, alpha: 1)).edgesIgnoringSafeArea(.all)
     case .one:
@@ -34,7 +34,7 @@ struct ContributionView: View {
   var body: some View {
     ZStack {
       VStack(alignment: .leading, spacing: 6) {
-        Text("올해에는 \(contributions.filter ({ $0.level != .empty }).count)일 동안 commit을 반영했습니다.")
+        Text("올해에는 \(contributions.filter ({ $0.score != .empty }).count)일 동안 commit을 반영했습니다.")
         ScrollView(
           .horizontal,
           showsIndicators: true
@@ -60,6 +60,5 @@ struct ContributionView: View {
   
   init(contributions: [Contribution]) {
     self.contributions = contributions
-    print(contributions)
   }
 }

@@ -9,17 +9,15 @@
 import Foundation
 
 public struct Contribution: Equatable, Hashable {
-  public enum Level: Int {
+  public enum Score: Int {
     case empty, one, two, three, more
   }
   
   public let date: Date
-  public let count: Int
-  public let level: Level
+  public let score: Score
   
-  public init(date: Date, count: Int, level: Level) {
+  public init(date: Date, score: Score) {
     self.date = date
-    self.count = count
-    self.level = level
+    self.score = score
   }
 }
