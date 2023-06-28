@@ -34,7 +34,7 @@ struct ContributionView: View {
   var body: some View {
     ZStack {
       VStack(alignment: .leading, spacing: 6) {
-        Text("올해에는 \(contributions.filter ({ $0.score != .empty }).count)일 동안 commit을 반영했습니다.")
+        Text("최근 1년중에 \(contributions.filter ({ $0.score != .empty }).count)일 동안 commit을 반영했습니다.")
         ScrollView(
           .horizontal,
           showsIndicators: true

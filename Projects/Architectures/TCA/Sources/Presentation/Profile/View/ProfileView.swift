@@ -69,19 +69,6 @@ struct ProfileView: View {
             .font(.system(size: Size.userStatusFont, weight: .regular, design: .default))
             .foregroundColor(.gray)
             .frame(maxWidth: .infinity, alignment: .leading)
-          Button {
-            print("click")
-          } label: {
-            Text("Edit")
-              .font(.system(size: Size.editButtonFont, weight: .regular, design: .default))
-              .foregroundColor(.gray)
-              .frame(minWidth: 50, minHeight: 25)
-          }
-          .padding(.init(top: 4, leading: 10, bottom: 4, trailing: 10))
-          .overlay(
-            RoundedRectangle(cornerRadius: 8)
-              .stroke(Color.gray, lineWidth: 1)
-          )
         }
         .frame(
           minWidth: geometry.size.width,
