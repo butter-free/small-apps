@@ -19,6 +19,11 @@ extension Project {
     var targets: [Target] = []
     var schemes: [Scheme] = []
     
+    let deploymentTarget: DeploymentTarget = .iOS(
+      targetVersion: "17.0",
+      devices: [.iphone]
+    )
+    
     let infoPlist: InfoPlist = infoPlist ?? .default(name: name)
     
     if products.contains(.app) {
@@ -27,7 +32,7 @@ extension Project {
         platform: .iOS,
         product: .app,
         bundleId: "com.butterfree.\(name)",
-        deploymentTarget: .iOS(targetVersion: "15.0", devices: [.iphone]),
+        deploymentTarget: deploymentTarget,
         infoPlist: infoPlist,
         sources: ["Sources/**"],
         resources: ["Resources/**"],
@@ -43,7 +48,7 @@ extension Project {
           platform: .iOS,
           product: products.first(where: {$0 == .framework}) != nil ? .framework : .staticFramework,
           bundleId: "com.butterfree.\(name)",
-          deploymentTarget: .iOS(targetVersion: "15.0", devices: [.iphone]),
+          deploymentTarget: deploymentTarget,
           infoPlist: infoPlist,
           sources: ["Sources/**"],
           resources: products.contains(.framework) ? ["Resources/**"] : nil,
@@ -59,7 +64,7 @@ extension Project {
         platform: .iOS,
         product: products.contains(.dynamicLibrary) ? .dynamicLibrary : .staticLibrary,
         bundleId: "com.butterfree.\(name)",
-        deploymentTarget: .iOS(targetVersion: "15.0", devices: [.iphone]),
+        deploymentTarget: deploymentTarget,
         infoPlist: infoPlist,
         sources: ["Sources/**"],
         resources: products.contains(.dynamicLibrary) ? ["Resources/**"] : nil,
