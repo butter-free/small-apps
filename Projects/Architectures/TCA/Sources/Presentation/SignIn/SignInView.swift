@@ -7,12 +7,13 @@
 
 import SwiftUI
 
+import Core
 import ComposableArchitecture
 
 struct SignInView: View {
   
   let store: Store<SignInState, SignInAction>
-  var dismiss: () -> Void
+  var completion: () -> Void
   
   var body: some View {
     WithViewStore(store) { viewStore in
@@ -45,7 +46,7 @@ struct SignInView: View {
           send: .routeSignInAlert(.dismiss)
         ),
         actions: {
-          Button("Confirm") { dismiss() }
+          Button("Confirm") { completion() }
         }
       )
     }

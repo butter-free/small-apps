@@ -18,6 +18,7 @@ struct MainView: View {
     static let StarredListViewBottom: CGFloat = 10
   }
   
+  @EnvironmentObject var router: ApplicationRouter
   @State private var selectionValue: Int = 0
   
   private let userService: UserService
@@ -40,7 +41,7 @@ struct MainView: View {
           Image(systemName: "flame.fill")
         }
       
-      StarredListView()
+      StarredListView(userService: userService)
         .padding(.init(top: 0, leading: 0, bottom: Padding.StarredListViewBottom, trailing: 0))
         .tabItem {
           Image(systemName: "star")
@@ -68,18 +69,20 @@ struct MainView: View {
         ),
         dismiss: {
           selectionValue = 0
+          router.navigateToRoot()
         }
       )
       .tabItem {
         Image(systemName: "gearshape")
       }
     }
+    .navigationBarBackButtonHidden(true)
     .background(Color.white)
   }
 }
 
-struct MainView_Previews: PreviewProvider {
-  static var previews: some View {
-    MainView(userService: UserManager.shared)
-  }
-}
+//struct MainView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    MainView(userService: UserManager.shared)
+//  }
+//}

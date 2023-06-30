@@ -25,7 +25,7 @@ struct StarredListView: View {
             reducer: repositoryListReducer,
             environment: RepositoryListEnvironment(
               viewType: .starredList,
-              userService: UserManager.shared,
+              userService: userService,
               searchUseCase: SearchDefaultUseCase(
                 searchRepository: SearchDataRepository()
               ),
@@ -40,10 +40,16 @@ struct StarredListView: View {
       }
     }
   }
+  
+  private let userService: UserService
+  
+  init(userService: UserService) {
+    self.userService = userService
+  }
 }
 
 struct StarredListView_Previews: PreviewProvider {
   static var previews: some View {
-    StarredListView()
+    StarredListView(userService: UserManager.shared)
   }
 }

@@ -89,7 +89,7 @@ struct RepositoryListView: View {
                   mainQueue: DispatchQueue.main.eraseToAnyScheduler()
                 )
               ),
-              dismiss: {
+              completion: {
                 viewStore.send(.routeSignInView(.dismiss))
               }
             )
@@ -103,24 +103,24 @@ struct RepositoryListView: View {
   }
 }
 
-struct RepositoryListView_Previews: PreviewProvider {
-  static var previews: some View {
-    RepositoryListView(
-      store: Store(
-        initialState: RepositoryListState(),
-        reducer: repositoryListReducer,
-        environment: RepositoryListEnvironment(
-          viewType: .searchList,
-          userService: UserManager.shared,
-          searchUseCase: SearchDefaultUseCase(
-            searchRepository: SearchDataRepository()
-          ),
-          starredUseCase: StarredDefaultUseCase(
-            starredRepository: StarredDataRepository()
-          ),
-          mainQueue: DispatchQueue.main.eraseToAnyScheduler()
-        )
-      )
-    )
-  }
-}
+//struct RepositoryListView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    RepositoryListView(
+//      store: Store(
+//        initialState: RepositoryListState(),
+//        reducer: repositoryListReducer,
+//        environment: RepositoryListEnvironment(
+//          viewType: .searchList,
+//          userService: UserManager.shared,
+//          searchUseCase: SearchDefaultUseCase(
+//            searchRepository: SearchDataRepository()
+//          ),
+//          starredUseCase: StarredDefaultUseCase(
+//            starredRepository: StarredDataRepository()
+//          ),
+//          mainQueue: DispatchQueue.main.eraseToAnyScheduler()
+//        )
+//      )
+//    )
+//  }
+//}

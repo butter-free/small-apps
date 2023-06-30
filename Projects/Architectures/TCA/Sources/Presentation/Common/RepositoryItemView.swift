@@ -74,8 +74,8 @@ struct RepositoryItemView: View {
   }
 }
 
-struct RepositoryItemView_Previews: PreviewProvider {
-  static var previews: some View {
-    RepositoryItemView(item: .init())
-  }
-}
+//struct RepositoryItemView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    RepositoryItemView(item: .init())
+//  }
+//}

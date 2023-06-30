@@ -27,8 +27,8 @@ struct StarButton: View {
   }
 }
 
-struct StarButton_Previews: PreviewProvider {
-  static var previews: some View {
-    StarButton(numberOfStars: 1, isStarred: true)
-  }
-}
+//struct StarButton_Previews: PreviewProvider {
+//  static var previews: some View {
+//    StarButton(numberOfStars: 1, isStarred: true)
+//  }
+//}
