@@ -26,8 +26,6 @@ struct TCAApp: App {
         routeToSignInView(userService: userService)
           .navigationDestination(for: ApplicationRouter.Destination.self) {
             switch $0 {
-            case .signIn:
-              routeToSignInView(userService: userService)
             case .main:
               MainView(userService: userService)
             }
@@ -37,6 +35,8 @@ struct TCAApp: App {
     }
   }
   
+  private var cancellable: Set<AnyCancellable> = .init()
+  
   init() {
     FirebaseApp.configure()
     
@@ -45,6 +45,7 @@ struct TCAApp: App {
       .sink {
         print("isLoading: \($0)")
       }
+      .store(in: &cancellable)
   }
 }
 

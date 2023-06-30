@@ -10,7 +10,6 @@ import SwiftUI
 final class ApplicationRouter: ObservableObject {
   
   enum Destination: Hashable {
-    case signIn
     case main
   }
   
