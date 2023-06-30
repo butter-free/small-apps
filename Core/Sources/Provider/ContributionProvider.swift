@@ -35,7 +35,6 @@ public final class ContributionProvider {
           let document = try SwiftSoup.parse(html)
           return try document.select("rect")
             .compactMap { [unowned self] in self.parseContributions(from: $0) }
-            .filter { $0.date.isInSameYear(as: .now) }
             .sorted(by: { lhs, rhs in
               return lhs.date <= rhs.date
             })
