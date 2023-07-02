@@ -14,7 +14,7 @@ import SwiftUI
 import ComposableArchitecture
 
 enum RepositoryListViewType: Equatable {
-  case searchList, starredList, none
+  case search, starred, none
 }
 
 struct RepositoryListView: View {

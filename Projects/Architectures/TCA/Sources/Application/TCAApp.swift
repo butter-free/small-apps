@@ -11,8 +11,6 @@ import Combine
 import Core
 import Firebase
 
-let indicator = ActivityIndicator()
-
 @main
 struct TCAApp: App {
   
@@ -35,17 +33,8 @@ struct TCAApp: App {
     }
   }
   
-  private var cancellable: Set<AnyCancellable> = .init()
-  
   init() {
     FirebaseApp.configure()
-    
-    indicator.loading
-      .receive(on: DispatchQueue.main)
-      .sink {
-        print("isLoading: \($0)")
-      }
-      .store(in: &cancellable)
   }
 }
 

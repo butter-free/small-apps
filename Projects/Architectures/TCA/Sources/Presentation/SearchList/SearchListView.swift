@@ -32,7 +32,7 @@ struct SearchListView: View {
               initialState: .init(),
               reducer: repositoryListReducer,
               environment: .init(
-                viewType: .searchList,
+                viewType: .search,
                 userService: UserManager.shared,
                 searchUseCase: SearchDefaultUseCase(
                   searchRepository: SearchDataRepository()

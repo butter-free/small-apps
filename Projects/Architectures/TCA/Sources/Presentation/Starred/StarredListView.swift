@@ -24,7 +24,7 @@ struct StarredListView: View {
             initialState: RepositoryListState(),
             reducer: repositoryListReducer,
             environment: RepositoryListEnvironment(
-              viewType: .starredList,
+              viewType: .starred,
               userService: userService,
               searchUseCase: SearchDefaultUseCase(
                 searchRepository: SearchDataRepository()

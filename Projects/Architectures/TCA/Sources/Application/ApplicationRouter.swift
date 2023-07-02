@@ -7,11 +7,22 @@
 
 import SwiftUI
 
-final class ApplicationRouter: ObservableObject {
+protocol Routable: ObservableObject {
   
-  enum Destination: Hashable {
-    case main
-  }
+  associatedtype Destination
+  
+  var navigationPath: NavigationPath { get }
+  
+  func navigate(to destination: Destination)
+  func navigateBack()
+  func navigateToRoot()
+}
+
+enum Destination: Hashable {
+  case main
+}
+
+final class ApplicationRouter: Routable {
   
   @Published var navigationPath = NavigationPath()
   

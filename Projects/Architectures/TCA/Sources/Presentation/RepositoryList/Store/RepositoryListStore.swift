@@ -57,7 +57,7 @@ let repositoryListReducer = Reducer<
 > { state, action, environment in
   switch action {
   case .requestItemList:
-    if environment.viewType == .searchList {
+    if environment.viewType == .search {
       return .init(value: .requestRepositoryItemList("swift"))
     } else {
       return .init(value: .requestStarredItemList)
@@ -92,7 +92,7 @@ let repositoryListReducer = Reducer<
   case let .requestStar(item):
     if environment.userService.isSignIn {
       
-      let requestState: RequestStarState = environment.viewType == .searchList ? .starred(item) : .unstar(item)
+      let requestState: RequestStarState = environment.viewType == .search ? .starred(item) : .unstar(item)
       
       switch requestState {
       case let .starred(item):

@@ -40,7 +40,6 @@ let signInReducer = Reducer<
   switch action {
   case .requestSignIn:
     return environment.signInUseCase.accessToken()
-      .trackActivity(indicator)
       .catchToEffect(SignInAction.responseAccessToken)
     
   case let .responseAccessToken(.success(accessToken)):
